@@ -804,8 +804,8 @@ ensureGitGlobals()
 
     addTimeToLog    
 
-	git config --global user.name "xt57"
-	git config --global user.email "mxWill.com"
+	git config --global user.name "ag20253"
+	git config --global user.email "xt57tech@gmail.com"
 
     msg="<default> Git globals set <return>"
     post "$msg"; read x
