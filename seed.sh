@@ -14,7 +14,7 @@
 	LogFile=/var/log/seed.log
 	LogFile=/tmp/seed.log	
 
-	coreAcct=di07zd4
+	coreAcct=ag20253
 
 	pkgTransportMethod=filesystem		#	"network" is also supported
 
@@ -1339,6 +1339,21 @@ sambaStartingPoint()
 
  
 
+installGolang()
+{
+
+    set -x
+
+    #   fetch Golang
+	wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz	| tee -a  $LogFile
+                
+    #   lay down the imported go package
+        sudo tar -C /usr/local -xzf go1.13.linux-amd64.tar.gz | tee -a $LogFile
+
+    #   ensure a local development directory
+        mkdir -p ~/go/src                | tee -a                $LogFile
+}
+
  
 
 
@@ -1429,6 +1444,7 @@ sambaStartingPoint()
 			"ensureVbCitizen"	\
 			"ensureGitGlobals"	\
 			"ensureKdeBuildSetup"	\
+                        "installGolang" 	\ 
 			"cleanAndShrink"	\
 			"listPackages"		\
 			"miscTests"		\
