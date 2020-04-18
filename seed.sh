@@ -1352,6 +1352,28 @@ installGolang()
 
     #   ensure a local development directory
         mkdir -p ~/go/src                | tee -a                $LogFile
+
+    #   ensure the go PATH variable is set in /etc/profile
+        echo ""						>> /etc/profile  | tee -a $LogFile
+        echo "pathmunge /usr/local/go/bin after"	>> /etc/profile  | tee -a $LogFile
+        echo "export PATH"				>> /etc/profile  | tee -a $LogFile
+        echo ""						>> /etc/profile  | tee -a $LogFile
+        echo "unset -f pathmunge"			>> /etc/profile  | tee -a $LogFile
+
+	# update to the most recent Git package
+	yum install \
+	https://repo.ius.io/ius-release-el7.rpm \
+	https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+	# install VS Code
+	sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+	sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+	sudo yum -y check-update
+	sudo yum -y install code
+
+
+
 }
 
  
